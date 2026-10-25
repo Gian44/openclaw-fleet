@@ -1,0 +1,20 @@
+// openclaw config patch --file openclaw/discord.patch.json5
+// Token comes from ~/.openclaw/.env (DISCORD_BOT_TOKEN=...), never from this file.
+{
+  channels: {
+    discord: {
+      enabled: true,
+      token: { source: "env", provider: "default", id: "DISCORD_BOT_TOKEN" },
+      dmPolicy: "allowlist",
+      allowFrom: ["YOUR_DISCORD_USER_ID"],
+      groupPolicy: "allowlist",
+      guilds: {
+        "YOUR_GUILD_ID": {
+          requireMention: false,
+          users: ["YOUR_DISCORD_USER_ID"],
+          channels: { "YOUR_CHANNEL_ID": { enabled: true } }
+        }
+      }
+    }
+  }
+}

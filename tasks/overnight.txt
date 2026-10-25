@@ -1,0 +1,9 @@
+# One task per line. Launched by: bash fleet/batch.sh tasks/overnight.txt
+Add pytest tests for divide() covering normal division, negative numbers and floats.
+Make divide() raise ZeroDivisionError with a clear message when b == 0, and add a test for it.
+Make mean() raise ValueError("mean of empty list") on an empty list, and add tests for mean() including the empty case.
+Add a power(base, exponent) function to calc/core.py, export it in calc/__init__.py, and add tests.
+Add a README.md to the sandbox describing the calc package, its functions, and how to run the tests.
+Create tests/test_types.py that imports every public function in calc and asserts each has a return annotation.
+Add a clamp(value, low, high) function with tests, raising ValueError if low > high.
+Run ruff on the package, fix any findings, and add tests/test_ruff_clean.py that fails if ruff reports issues.

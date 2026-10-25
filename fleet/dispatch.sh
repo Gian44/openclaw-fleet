@@ -76,6 +76,8 @@ PY
 if [ "$WAIT" = 1 ]; then
   run_job; cat "$JOB/status.json"
 else
-  nohup bash -c "$(declare -f run_job); $(declare -p CLAUDE_BIN REPO PROMPT MODEL FLEET_MAX_TURNS FLEET_ALLOWED_TOOLS JOB); run_job" >/dev/null 2>&1 &
+  # setsid -f: new session, fully detached from the caller (OpenClaw's exec tool kills its
+  # process group when the command returns; this survives that).
+  setsid -f bash -c "$(declare -f run_job); $(declare -p CLAUDE_BIN REPO PROMPT MODEL FLEET_MAX_TURNS FLEET_ALLOWED_TOOLS JOB); run_job" >/dev/null 2>&1 < /dev/null
   echo "dispatched job $JOB_ID ($NAME) model=$MODEL repo=$REPO"
 fi
